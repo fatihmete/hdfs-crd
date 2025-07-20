@@ -1,8 +1,10 @@
 # hdfs-crd
-// TODO(user): Add simple overview of use/purpose
+
+Simple HDFS operator developed for learning purposes
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+
+...
 
 ## Getting Started
 
