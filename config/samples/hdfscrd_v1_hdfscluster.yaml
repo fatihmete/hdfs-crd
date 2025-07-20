@@ -1,0 +1,38 @@
+apiVersion: hdfscrd.fatihmete.github.io/v1
+kind: HDFSCluster
+metadata:
+  labels:
+    app.kubernetes.io/name: hdfs-crd
+    app.kubernetes.io/managed-by: kustomize
+  name: hdfscluster-sample
+  namespace: bigdata
+spec:
+  name: hdfscluster-sample
+  nodes:
+  - name: namenode
+    hostname: kube1
+    role: NameNode
+    disks:
+    -  /hadoop/nn
+  - name: node1
+    hostname: kube2
+    role: DataNode
+    disks:
+    -  /hadoop/disk1
+  - name: node2
+    hostname: kube3
+    role: DataNode
+    disks:
+    -  /hadoop/disk1
+  # - name: node2
+  #   hostname: kube3
+  #   role: DataNode
+  #   disks:
+  #   -  /mnt/disk1
+  #   -  /mnt/disk2
+  # - name: node4
+  #   hostname: kube4
+  #   role: DataNode
+  #   disks:
+  #   -  /mnt/disk1
+  #   -  /mnt/disk2
