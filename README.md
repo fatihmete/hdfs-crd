@@ -2,9 +2,17 @@
 
 Simple HDFS operator developed for learning purposes
 
-## Description
+## Features
 
-...
+- Declarative management of HDFS clusters via Kubernetes Custom Resources
+- Automated creation and reconciliation of HDFS NameNode and DataNode resources
+- Customizable HDFS configuration through CRD fields (`core-site.xml`, `hdfs-site.xml`)
+- Support for specifying multiple HDFS nodes with roles and disk paths
+- Optional NodePort service exposure for HDFS components
+- Status tracking for deployed HDFS clusters
+- Automatic recreation of Kubernetes objects (such as Pods, Configmaps) when their specification changes in the HDFSCluster resource
+- Sample manifests for quick cluster creation and testing
+
 
 ## Getting Started
 

@@ -39,9 +39,31 @@ spec:
           spec:
             description: spec defines the desired state of HDFSCluster
             properties:
+              config:
+                description: Config contains the configuration for the HDFS cluster
+                properties:
+                  coreSite:
+                    type: string
+                  hdfsSite:
+                    type: string
+                type: object
               name:
                 description: Unique name of the HDFS cluster
                 type: string
+              nodePortConfig:
+                description: NodePortConfig defines the configuration for NodePort
+                  services
+                properties:
+                  enabled:
+                    type: boolean
+                  ports:
+                    properties:
+                      nameNodePort:
+                        type: integer
+                      nodePort:
+                        type: integer
+                    type: object
+                type: object
               nodes:
                 description: |-
                   Nodes is a list of HDFS nodes in the cluster

@@ -34,11 +34,31 @@ type HDFSClusterSpec struct {
 	// +required
 	Name *string `json:"name,omitempty"`
 
+	// Config contains the configuration for the HDFS cluster
+	Config *ConfigSpec `json:"config,omitempty"`
+
+	// NodePortConfig defines the configuration for NodePort services
+	NodePortConfig NodePortConfig `json:"nodePortConfig,omitempty"`
 	// Nodes is a list of HDFS nodes in the cluster
 	// Each node should have a unique name and a valid hostname
 	// +kubebuilder:validation:MinItems=1
 	// +required
 	Nodes []HDFSNode `json:"nodes,omitempty"`
+}
+
+type NodePortConfig struct {
+	Enabled bool  `json:"enabled,omitempty"`
+	Ports   Ports `json:"ports,omitempty"`
+}
+
+type Ports struct {
+	NameNodePort int `json:"nameNodePort,omitempty"`
+	NodePort     int `json:"nodePort,omitempty"`
+}
+
+type ConfigSpec struct {
+	CoreSite string `json:"coreSite,omitempty"`
+	HdfsSite string `json:"hdfsSite,omitempty"`
 }
 
 type HDFSNode struct {

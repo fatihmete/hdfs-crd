@@ -8,6 +8,11 @@ metadata:
   namespace: bigdata
 spec:
   name: hdfscluster-sample
+  nodePortConfig:
+    enabled: true
+    ports:
+      nameNodePort: 50470
+      nodePort: 30001
   nodes:
   - name: namenode
     hostname: kube1
@@ -19,17 +24,44 @@ spec:
     role: DataNode
     disks:
     -  /hadoop/disk1
+    -  /hadoop/disk2
   - name: node2
     hostname: kube3
     role: DataNode
     disks:
     -  /hadoop/disk1
-  # - name: node2
-  #   hostname: kube3
-  #   role: DataNode
-  #   disks:
-  #   -  /mnt/disk1
-  #   -  /mnt/disk2
+  - name: node3
+    hostname: kube4
+    role: DataNode
+    disks:
+    -  /hadoop/disk1
+    -  /hadoop/disk2
+  config:
+    hdfsSite: |
+        <property>
+          <name>dfs.namenode.name.dir</name>
+          <value>/hadoop/nn</value>
+        </property>
+        <property>
+          <name>dfs.datanode.data.dir</name>
+          <value>${DFS_DATANODE_DATA_DIR}</value>
+          <final>true</final>
+        </property>
+        <property>
+          <name>dfs.webhdfs.enable</name>
+          <value>true</value>
+        </property>
+        <property>
+          <name>dfs.http.address</name>
+          <value>0.0.0.0:50470</value>
+          <final>true</final>
+        </property>
+        <property>
+          <name>dfs.replication</name>
+          <value>2</value>
+        </property>
+
+
   # - name: node4
   #   hostname: kube4
   #   role: DataNode
